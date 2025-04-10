@@ -28,7 +28,7 @@ public class DataController : ControllerBase
     }
 
     [HttpGet("oursky")]
-    public IActionResult GetOurSkyData()
+    public async Task<IActionResult> GetOurSkyData()
     {
         var result = await _ourSky.GetSampleObservationAsync();
         return Ok(result);
