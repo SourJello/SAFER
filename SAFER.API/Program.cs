@@ -11,6 +11,8 @@ builder.Services.AddScoped<OurSkyService>();
 builder.Services.AddScoped<SpaceTrackService>();
 builder.Services.AddScoped<SatNOGSService>();
 
+builder.Services.AddControllers();
+
 
 var app = builder.Build();
 
@@ -20,6 +22,7 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
+app.MapControllers();
 app.UseHttpsRedirection();
 
 var summaries = new[]
