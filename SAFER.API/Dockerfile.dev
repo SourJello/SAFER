@@ -1,0 +1,12 @@
+FROM mcr.microsoft.com/dotnet/sdk:9.0-preview
+WORKDIR /app
+
+COPY . .
+RUN dotnet restore SAFER.API.csproj
+RUN dotnet build SAFER.API.csproj -c Debug
+
+EXPOSE 5050
+EXPOSE 5005
+
+ENTRYPOINT ["dotnet", "bin/Debug/net9.0/SAFER.API.dll"]
+

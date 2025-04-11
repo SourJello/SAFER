@@ -1,15 +1,12 @@
-# Use the .NET 9 Preview SDK for building
+#build stage
 FROM mcr.microsoft.com/dotnet/sdk:9.0-preview AS build
 WORKDIR /src
-
-# Copy the full SAFER.API folder
-COPY . ./
-
-#restore
+COPY SAFER.API/*.csproj ./
 RUN dotnet restore SAFER.API.csproj
+COPY . ./
 RUN dotnet publish SAFER.API.csproj -c Release -o /app/publish
 
-# Use the .NET 9 Preview ASP.NET runtime
+#runtime stage
 FROM mcr.microsoft.com/dotnet/aspnet:9.0-preview AS final
 WORKDIR /app
 COPY --from=build /app/publish .

@@ -12,14 +12,22 @@ public class OurSkyService
         _httpClient = httpClient;
     }
 
-    public async Task<string> GetSampleObservationAsync()
+    // public async Task<string> GetSampleObservationAsync()
+    // {
+    //     // 🔧 Replace this with a real OurSky endpoint when ready
+    //     var response = await _httpClient.GetAsync("https://api.prod.oursky.ai");
+        
+
+    //     response.EnsureSuccessStatusCode();
+
+    //     var content = await response.Content.ReadAsStringAsync();
+    //     return content;
+    // }
+
+    public async Task<string> GetSatelliteTargetsAsync()
     {
-        // 🔧 Replace this with a real OurSky endpoint when ready
-        var response = await _httpClient.GetAsync("https://httpbin.org/json");
-
+        var response = await _httpClient.GetAsync("v1/satellite-targets");
         response.EnsureSuccessStatusCode();
-
-        var content = await response.Content.ReadAsStringAsync();
-        return content;
+        return await response.Content.ReadAsStringAsync();
     }
 }

@@ -1,4 +1,5 @@
 using SAFER.API.Services;
+using System.Net.Http.Headers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,16 @@ builder.Services.AddScoped<OurSkyService>();
 builder.Services.AddScoped<SpaceTrackService>();
 builder.Services.AddScoped<SatNOGSService>();
 
+//Load secret from user secrets
+var ourSkyApiKey = builder.Configuration["OurSky:Token"];
+
+// Register services
+builder.Services.AddHttpClient<OurSkyService>(client =>
+{
+    client.BaseAddress = new Uri("https://api.oursky.ai/"); 
+    client.DefaultRequestHeaders.Authorization =
+        new AuthenticationHeaderValue("Bearer", ourSkyApiKey);
+});
 builder.Services.AddControllers();
 
 

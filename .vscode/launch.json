@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Attach to SAFER API in Docker",
+        "type": "coreclr",
+        "request": "attach",
+        "processId": "${command:pickRemoteProcess}",
+        "pipeTransport": {
+          "pipeProgram": "docker",
+          "pipeArgs": [ "exec", "-i", "safer-safer-api-1" ],
+          "debuggerPath": "/root/.dotnet/dotnet",
+          "pipeCwd": "${workspaceFolder}"
+        },
+        "sourceFileMap": {
+          "/app": "${workspaceFolder}/SAFER.API"
+        }
+      }
+    ]
+  }
+  

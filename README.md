@@ -55,20 +55,33 @@ git config commit.gpgsign true
 
 ### Local development with hot-reload (via Docker Compose):
 
+Run this to start the app in development mode with debug settings:
+This will:
+
+Build the app in Debug mode using Dockerfile.dev
+Expose the API on http://localhost:5050
+Open port 5005 for debugger attachment
+Mount your code into the container (optional enhancement)
+
 ```bash
 docker compose up --build --force-recreate
 ```
+### Production
+To build and run the production configuration (e.g., Release mode only):
+
+```bash
+docker compose -f docker-compose.yml up --build
+```
+This uses:
+
+The Release configuration
+The official ASP.NET runtime image (no SDK/debugger)
+The pre-published output from the multi-stage Dockerfile
+
 
 This will:
 - Build the SAFER API (targeting .NET 9)
 - Map API to `http://localhost:5050`
-- Serve endpoints like:
-
-  ```
-  GET http://localhost:5050/weatherforecast
-  GET http://localhost:5050/data/status
-  GET http://localhost:5050/data/oursky
-  ```
 
 ---
 

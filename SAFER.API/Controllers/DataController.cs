@@ -30,7 +30,7 @@ public class DataController : ControllerBase
     [HttpGet("oursky")]
     public async Task<IActionResult> GetOurSkyData()
     {
-        var result = await _ourSky.GetSampleObservationAsync();
+        var result = await _ourSky.GetSatelliteTargetsAsync();
         return Ok(result);
     }
 
