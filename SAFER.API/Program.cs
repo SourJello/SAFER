@@ -31,6 +31,11 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI(options => 
+    {
+        options.RoutePrefix = "docs";
+    });
 }
 
 app.MapControllers();
