@@ -83,6 +83,21 @@ This will:
 - Build the SAFER API (targeting .NET 9)
 - Map API to `http://localhost:5050`
 
+## Running Tests (Dockerized)
+
+SAFER includes a containerized test runner using xUnit, enabling you to execute unit tests in a consistent, isolated environment.
+
+To run the full test suite:
+
+docker compose -f docker-compose.test.yml up --build
+This will:
+
+- Build the test environment from Dockerfile.test
+- Restore dependencies and compile tests
+- Run all unit tests defined in SAFER.Tests/
+- Test results will stream directly to your terminal.
+- Requires only Docker — no local .NET SDK setup needed.
+
 ---
 
 ## Available Endpoints
