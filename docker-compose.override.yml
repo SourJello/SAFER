@@ -2,7 +2,7 @@ services:
   safer-api:
     build:
       context: ./SAFER.API
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile.local
     ports:
       - "5050:80"
       - "5005:5005"

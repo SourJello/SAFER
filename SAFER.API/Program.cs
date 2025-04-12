@@ -1,11 +1,13 @@
 using SAFER.API.Services;
-using System.Net.Http.Headers;
+using System.Net.Http.Headers; 
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<OurSkyService>();
@@ -34,6 +36,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(options => 
     {
+        options.SwaggerEndpoint($"{(app.Environment.IsDevelopment() ? "" : "/")}/swagger/v1/swagger.json", "SAFER.API v1");
         options.RoutePrefix = "docs";
     });
 }

@@ -56,16 +56,22 @@ git config commit.gpgsign true
 ### Local development with hot-reload (via Docker Compose):
 
 Run this to start the app in development mode with debug settings:
-This will:
-
-Build the app in Debug mode using Dockerfile.dev
-Expose the API on http://localhost:5050
-Open port 5005 for debugger attachment
-Mount your code into the container (optional enhancement)
 
 ```bash
 docker compose up --build --force-recreate
 ```
+
+This will:
+
+Build the app in Debug mode using Dockerfile.local
+Expose the API on http://localhost:5050
+Open port 5005 for debugger attachment
+Mount your code into the container (optional enhancement)
+
+
+### Dev/Stage
+Todo
+
 ### Production
 To build and run the production configuration (e.g., Release mode only):
 
@@ -88,8 +94,10 @@ This will:
 SAFER includes a containerized test runner using xUnit, enabling you to execute unit tests in a consistent, isolated environment.
 
 To run the full test suite:
-
+```bash
 docker compose -f docker-compose.test.yml up --build
+```
+
 This will:
 
 - Build the test environment from Dockerfile.test
