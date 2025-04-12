@@ -1,0 +1,13 @@
+# Dockerfile.test — for use in root of SAFER/
+FROM mcr.microsoft.com/dotnet/sdk:9.0-preview
+
+WORKDIR /app
+
+# Copy everything into container
+COPY . .
+
+# Restore and test
+RUN dotnet restore SAFER.Tests/SAFER.Tests.csproj
+
+# Run the tests directly
+CMD ["dotnet", "test", "SAFER.Tests/SAFER.Tests.csproj"]
