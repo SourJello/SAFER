@@ -1,12 +1,17 @@
-FROM mcr.microsoft.com/dotnet/sdk:9.0-preview
-WORKDIR /app
-
+# Build stage
+FROM mcr.microsoft.com/dotnet/sdk:9.0-preview AS build
+WORKDIR /workspace/SAFER.API
 COPY . .
-RUN dotnet restore SAFER.API.csproj
-RUN dotnet build SAFER.API.csproj -c Debug
 
-EXPOSE 5050
-EXPOSE 5005
+RUN dotnet restore
+RUN dotnet publish SAFER.API.csproj -c Debug -o /app/out --no-restore
 
-ENTRYPOINT ["dotnet", "bin/Debug/net9.0/SAFER.API.dll"]
+# Runtime stage with vsdbg installed
+FROM mcr.microsoft.com/dotnet/aspnet:9.0-preview
+RUN apt-get update && apt-get install -y curl unzip bash procps
+RUN curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l /vsdbg
 
+WORKDIR /app
+COPY --from=build /app/out .
+
+ENTRYPOINT ["dotnet", "SAFER.API.dll"]
