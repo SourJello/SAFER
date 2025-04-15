@@ -6,10 +6,8 @@
             "command": "dotnet",
             "type": "process",
             "args": [
-                "build",
-                "${workspaceFolder}/SAFER.sln",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+              "build",
+              "${workspaceFolder}/SAFER.API/SAFER.API.csproj"
             ],
             "problemMatcher": "$msCompile"
         },

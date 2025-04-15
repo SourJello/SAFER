@@ -14,16 +14,16 @@ builder.Services.AddScoped<OurSkyService>();
 builder.Services.AddScoped<SpaceTrackService>();
 builder.Services.AddScoped<SatNOGSService>();
 
-//Load secret from user secrets
-var ourSkyApiKey = builder.Configuration["OurSky:Token"];
+var config = builder.Configuration;
 
-// Register services
+//Load secret from user secrets
 builder.Services.AddHttpClient<OurSkyService>(client =>
 {
-    client.BaseAddress = new Uri("https://api.oursky.ai/"); 
+    client.BaseAddress = new Uri(config["OurSky:BaseUrl"]);
     client.DefaultRequestHeaders.Authorization =
-        new AuthenticationHeaderValue("Bearer", ourSkyApiKey);
+        new AuthenticationHeaderValue("Bearer", config["OurSky:ApiKey"]);
 });
+
 builder.Services.AddControllers();
 
 

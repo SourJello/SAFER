@@ -20,8 +20,19 @@
             },
             "sourceFileMap": {
                 "/workspace/SAFER.API": "${workspaceFolder}/SAFER.API"
-            }
-        }
+            },
+        },
+        {
+            "name": "Run SAFER.API Locally",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/SAFER.API/bin/Debug/net9.0/SAFER.API.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/SAFER.API",
+            "stopAtEntry": false,
+            "console": "internalConsole"
+          }
     ]
   }
   

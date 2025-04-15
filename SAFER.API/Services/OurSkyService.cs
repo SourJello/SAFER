@@ -1,6 +1,5 @@
-using System.Net.Http;
-using System.Threading.Tasks;
 
+using System.Net.Http.Headers;
 namespace SAFER.API.Services;
 
 public class OurSkyService

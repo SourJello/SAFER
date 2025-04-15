@@ -9,3 +9,5 @@ services:
     environment:
       - ASPNETCORE_URLS=http://+:80
       - DOTNET_ENVIRONMENT=Development
+      - OurSky__ApiKey
+      - OurSky__BaseUrl
